@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_recipe/views/home.dart';
 import 'package:food_recipe/views/widgets/recipe_card.dart';
 
 void main() {
