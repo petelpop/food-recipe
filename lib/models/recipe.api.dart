@@ -17,13 +17,13 @@ class RecipeApi {
 // });
 
   static Future<List<Recipe>> getRecipe() async{
-    var uri = Uri.http("yummly2.p.rapidapi.com", "/feeds/list",{
-      "limit":"18", "start":"0","tag":"list.recipe.popular"
+    var uri = Uri.http("yummly2.p.rapidapi.com", "feeds/list",{
+          'limit': '24','start': '0'
     });
 
     final response = await http.get(uri, headers: {
-  'X-RapidAPI-Key': '7b05d9ff28msh425c699f2f94eb0p1588f9jsn43d047c83258',
-	'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
+    'X-RapidAPI-Key': '7b05d9ff28msh425c699f2f94eb0p1588f9jsn43d047c83258',
+    'X-RapidAPI-Host': 'yummly2.p.rapidapi.com'
     });
 
     Map data = jsonDecode(response.body);

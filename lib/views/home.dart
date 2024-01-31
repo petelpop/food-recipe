@@ -1,4 +1,8 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:food_recipe/models/recipe.api.dart';
+import 'package:food_recipe/models/recipe.dart';
 import 'package:food_recipe/views/widgets/recipe_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +13,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  late List<Recipe> _recipes;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    getRecipes();
+  }
+
+  Future<void> getRecipes() async {
+    _recipes = await RecipeApi.getRecipe();
+    setState(() {
+      _isLoading = false;
+    });
+    print(_recipes);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +45,17 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: RecipeCard(title: 'my recipe', cookTime: "30 min", rating: '4.3', thumbnailUrl: "https://media.istockphoto.com/id/1191080960/photo/traditional-turkish-breakfast-and-people-taking-various-food-wide-composition.jpg?b=1&s=612x612&w=0&k=20&c=W93OudYpERD4ySawYhVoKjWJqf4PP4Ik_AutQKFVBBk="),
+      body: _isLoading ? Center(child: CircularProgressIndicator()) :
+      ListView.builder(
+        itemCount: _recipes.length,
+        itemBuilder: (context, index) {
+          return RecipeCard(
+            title: _recipes[index].name, 
+            cookTime: _recipes[index].totalTime, 
+            rating: _recipes[index].rating.toString(), 
+            thumbnailUrl: _recipes[index].images);
+        },
+      )
     );
   }
 }
