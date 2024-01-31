@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.restaurant_menu),
@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      body: RecipeCard(title: 'my recipe', cookTime: "30 min", rating: '4.3', thumbnailUrl: "https://media.istockphoto.com/id/1191080960/photo/traditional-turkish-breakfast-and-people-taking-various-food-wide-composition.jpg?b=1&s=612x612&w=0&k=20&c=W93OudYpERD4ySawYhVoKjWJqf4PP4Ik_AutQKFVBBk="),
     );
   }
 }
