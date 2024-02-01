@@ -18,16 +18,14 @@ class Recipe {
         totalTime: json['totalTime'] as String);
   }
 
-  static List<Recipe> recipesFromSnapshot(List Snapshot){
-    return Snapshot.map(
-      (data){
-        return Recipe.fromJson(data);
-      }
-    ).toList();
+  static List<Recipe> recipesFromSnapshot(List snapshot) {
+    return snapshot.map((data) {
+      return Recipe.fromJson(data);
+    }).toList();
   }
 
   @override
-  String toString(){
-    return 'Recipe(name: $name, images: $images, rating: $rating, totalTime: $totalTime)';
+  String toString() {
+    return 'Recipe {name: $name, image: $images, rating: $rating, totalTime: $totalTime}';
   }
 }
